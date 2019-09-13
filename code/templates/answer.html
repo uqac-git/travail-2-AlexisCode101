@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{{bool_answer}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <center>
+        <div id="password_answer_box">
+            <h1>{{ result }}</h1>
+            <h2>Le code secret à trouver :</h2>
+            <h3>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</h3><br>
+            <h2>Vous avez entré :</h2>
+            {{entered_hash}}<br>
+            <h2>Avec l'encryption : </h2> {{ entered_hash_type }}<br>
+        <a href="/">Essayer à nouveau</a>
+        </div>
+    </center>
+</body>
+</html>

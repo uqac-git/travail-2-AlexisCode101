@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <title>Decrypt me</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
@@ -7,21 +7,18 @@
 <body>
     <center>
         <div id="game_title">
-                <h1>Guess the password!</h1>
-                <h1>{{result}}</h1>
+                <h1>Trouvez le code secret!</h1>
+        </div>
+        <div id="password_guess_box">
+            <h2>Tentez de deviner le code secret :</h2><br>
+            <h3>5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8</h3><br>
         </div>
         <div id="password_input_box">
-            <h2>The password to guess:</h2>
-            <h3>21232f297a57a5a743894a0e4a801fc3</h3><br>
-            {% block entered_passwd %}
-            <h2>You entered:</h2>
-            {{entered_hash}}
-            {% endblock %}
             <form method="post">
-                <p>Password: <br>
+                <p>Code secret :
                 <input type="text" name="passwd_input"> <br>
                 </p>
-                <p>Select the hash type: <br>
+                <p>Sélectionne le type d'encryption :
                 <select name="hash_input">
                     <option value="MD5">MD5</option>
                     <option value="SHA1">SHA1</option>
@@ -34,6 +31,7 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
+        <img id="question_img" src="{{url_for('static', filename='img/question.jpg')}}"/>
     </center>
 </body>
 </html>

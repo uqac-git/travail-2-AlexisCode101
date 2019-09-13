@@ -1,0 +1,69 @@
+from flask import Flask, render_template, url_for, request
+import os
+import hashlib
+
+
+app = Flask(__name__)
+
+# For CSS update
+@app.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(app.root_path,
+                                 endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
+
+@app.route('/', methods=['GET'])
+def form(name=None):
+    return render_template('index.html', name=name, bool_answer="Bravo!")
+
+@app.route('/', methods=['POST'])
+def decrypt_me(name=None):
+    hex_dig = None
+    passwd_input = request.form['passwd_input']
+    hash_input = request.form['hash_input']
+    if hash_input == 'MD5':
+        hash_object = hashlib.md5(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    elif hash_input == 'SHA1':
+        hash_object = hashlib.sha1(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    elif hash_input == 'SHA224':
+        hash_object = hashlib.sha224(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    elif hash_input == 'SHA256':
+        hash_object = hashlib.sha256(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    elif hash_input == 'SHA384':
+        hash_object = hashlib.sha384(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    elif hash_input == 'SHA512':
+        hash_object = hashlib.sha512(str(passwd_input).encode('utf-8'))
+        hex_dig = hash_object.hexdigest()
+        print(hex_dig)
+    else:
+        return render_template('answer.html', name=name, result='Dont cheat!')
+
+    if hex_dig == '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8':
+        result_msg = 'Bravo vous avez trouvé!'
+    else:
+        result_msg = 'Erreur, réessayez'
+
+    return render_template('answer.html', name=name, entered_hash=hex_dig, entered_hash_type=hash_input, result=result_msg)
+
+
+if __name__ == '__main__':
+    app.run()
+
+

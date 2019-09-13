@@ -1,0 +1,3 @@
+class Config(object):
+    # ...
+    LANGUAGES = ['fr', 'en']

@@ -1,6 +1,25 @@
+#password_guess_box {
+    width: 600px;
+    border: 5px solid black;
+    padding: 50px;
+    margin: 20px;
+}
+
 #password_input_box {
     width: 600px;
     border: 5px solid black;
     padding: 50px;
     margin: 20px;
+}
+
+#password_answer_box {
+    width: 1000px;
+    border: 5px solid black;
+    padding: 50px;
+    margin: 20px;
+}
+
+#question_img {
+    width: 25%;
+    height: 25%;
 }
