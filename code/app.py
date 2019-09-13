@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request
+from OpenSSL import SSL
 import os
 import hashlib
 
@@ -67,6 +68,7 @@ def page_not_found(e):
     return render_template("404_error.html", page_name=request.path.split('/')[1])
 
 if __name__ == '__main__':
-    app.run()
+    ssl_context = ('SSL.crt', 'SSL.key')
+    app.run(ssl_context=(ssl_context))
 
 
