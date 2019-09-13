@@ -21,7 +21,7 @@ def dated_url_for(endpoint, **values):
 
 @app.route('/', methods=['GET'])
 def form(name=None):
-    return render_template('index.html', name=name, bool_answer="Bravo!")
+    return render_template('index.html', bool_answer="Bravo!")
 
 @app.route('/', methods=['POST'])
 def decrypt_me(name=None):
@@ -53,15 +53,18 @@ def decrypt_me(name=None):
         hex_dig = hash_object.hexdigest()
         print(hex_dig)
     else:
-        return render_template('answer.html', name=name, result='Dont cheat!')
+        return render_template('answer.html', result='Dont cheat!')
 
     if hex_dig == '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8':
         result_msg = 'Bravo vous avez trouvé!'
     else:
         result_msg = 'Erreur, réessayez'
 
-    return render_template('answer.html', name=name, entered_hash=hex_dig, entered_hash_type=hash_input, result=result_msg)
+    return render_template('answer.html', entered_hash=hex_dig, entered_hash_type=hash_input, result=result_msg)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404_error.html", page_name=request.path.split('/')[1])
 
 if __name__ == '__main__':
     app.run()
