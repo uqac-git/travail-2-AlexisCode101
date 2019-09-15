@@ -1,10 +1,14 @@
 Laboratoire 1 / Trouvez le mot encrypte   
 
 Requirements:
+---
+
 - python3  
 - python3-venv if on linux  
 
-Getting started:  
+Getting started:
+---
+
 1- Clone the project  
 2- Go to the directory : `cd travail-2-AlexisCode101/code/`  
 3- Create a virtual `environnement using: python -m venv venv`  
