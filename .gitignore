@@ -3,8 +3,8 @@
 # Edit at https://www.gitignore.io/?templates=venv,latex,flask,python,pycharm,virtualenv
 
 ### Key ###
-code/SSL.key.org
-code/SSl.csr
+SSL.key.org
+SSl.csr
 
 ### Flask ###
 instance/*

@@ -1,23 +1,9 @@
 from flask import Flask, render_template, url_for, request
-from OpenSSL import SSL, crypto
 import os
 import hashlib
+from ssl import SSLContext, PROTOCOL_SSLv23
 
 secret_hash = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'
-
-# cert = crypto.load_certificate(
-#     crypto.FILETYPE_PEM,
-#     open('SSL.crt').read()
-# )
-#
-# key = crypto.load_privatekey(
-#     crypto.FILETYPE_PEM,
-#     open('SSL.key').read()
-# )
-#
-# context = SSL.Context(SSL.SSLv23_METHOD)
-# context.use_certificate(cert)
-# context.use_privatekey(key)
 
 app = Flask(__name__)
 
@@ -83,7 +69,8 @@ def page_not_found(e):
     return render_template("404_error.html", page_name=request.path.split('/')[1])
 
 if __name__ == '__main__':
-    context = ('SSL.crt', 'SSL.key')
+    context = SSLContext(PROTOCOL_SSLv23)
+    context.load_cert_chain('./SSL.crt', './SSL.key')
     app.run(debug=True, port=5000, ssl_context=context)
 
 
