@@ -1,11 +1,11 @@
 # Laboratoire 1 / Trouvez le mot secret!
 
-## Requirements:
+### Requirements:
 
 * python3  
 * python3-venv on linux  
 
-## Getting started:
+### Getting started:
 
 1. Open a terminal (Linux/MacOS) or a PowerShell command prompt (Windows)  
 1. Clone the project  
