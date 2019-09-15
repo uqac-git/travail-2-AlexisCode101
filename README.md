@@ -1,4 +1,4 @@
-Laboratoire 1 / Trouvez le mot secret!
+## Laboratoire 1 / Trouvez le mot secret!
 
 Requirements:
 ---
