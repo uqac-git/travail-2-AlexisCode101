@@ -2,6 +2,10 @@
 # Created by https://www.gitignore.io/api/venv,latex,flask,python,pycharm,virtualenv
 # Edit at https://www.gitignore.io/?templates=venv,latex,flask,python,pycharm,virtualenv
 
+### Key ###
+code/SSL.key.org
+code/SSl.csr
+
 ### Flask ###
 instance/*
 !instance/.gitignore

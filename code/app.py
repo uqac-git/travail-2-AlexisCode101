@@ -1,8 +1,23 @@
 from flask import Flask, render_template, url_for, request
-from OpenSSL import SSL
+from OpenSSL import SSL, crypto
 import os
 import hashlib
 
+secret_hash = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'
+
+# cert = crypto.load_certificate(
+#     crypto.FILETYPE_PEM,
+#     open('SSL.crt').read()
+# )
+#
+# key = crypto.load_privatekey(
+#     crypto.FILETYPE_PEM,
+#     open('SSL.key').read()
+# )
+#
+# context = SSL.Context(SSL.SSLv23_METHOD)
+# context.use_certificate(cert)
+# context.use_privatekey(key)
 
 app = Flask(__name__)
 
@@ -56,7 +71,7 @@ def decrypt_me(name=None):
     else:
         return render_template('answer.html', result='Dont cheat!')
 
-    if hex_dig == '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8':
+    if hex_dig == secret_hash:
         result_msg = 'Bravo vous avez trouvé!'
     else:
         result_msg = 'Erreur, réessayez'
@@ -68,7 +83,7 @@ def page_not_found(e):
     return render_template("404_error.html", page_name=request.path.split('/')[1])
 
 if __name__ == '__main__':
-    ssl_context = ('SSL.crt', 'SSL.key')
-    app.run(ssl_context=(ssl_context))
+    context = ('SSL.crt', 'SSL.key')
+    app.run(debug=True, port=5000, ssl_context=context)
 
 

@@ -1,8 +1,16 @@
+#app_title {
+    text-align: center;
+}
+
 #password_guess_box {
-    width: 600px;
+    width: 1000px;
     border: 5px solid black;
     padding: 50px;
     margin: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 #password_input_box {
@@ -10,6 +18,10 @@
     border: 5px solid black;
     padding: 50px;
     margin: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 #password_answer_box {
@@ -17,9 +29,15 @@
     border: 5px solid black;
     padding: 50px;
     margin: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #question_img {
     width: 25%;
     height: 25%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

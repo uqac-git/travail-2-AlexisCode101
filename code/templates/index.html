@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Decrypt me</title>
+    <title>Trouvez le mot secret!</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-    <center>
         <div id="game_title">
-                <h1>Trouvez le code secret!</h1>
+                <h1 id="app_title">Trouvez le code secret!</h1>
         </div>
         <div id="password_guess_box">
             <h2>Tentez de deviner le code secret :</h2><br>
@@ -28,10 +27,10 @@
                     <option value="SHA512">SHA512</option>
                 </select> <br>
                 </p>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Soumettre">
             </form>
         </div>
-        <img id="question_img" src="{{url_for('static', filename='img/question.jpg')}}"/>
+        <img id="question_img" src="{{url_for('static', filename='img/question.jpg')}}" alt="Image non trouvé"/>
     </center>
 </body>
 </html>
