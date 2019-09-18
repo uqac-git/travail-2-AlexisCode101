@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for, request
-import os
+from flask import Flask, render_template, request
 import hashlib
 from ssl import SSLContext, PROTOCOL_SSLv23
 
@@ -7,33 +6,19 @@ secret_hash = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'
 
 app = Flask(__name__)
 
-# For CSS update
-@app.context_processor
-def override_url_for():
-    return dict(url_for=dated_url_for)
-
-def dated_url_for(endpoint, **values):
-    if endpoint == 'static':
-        filename = values.get('filename', None)
-        if filename:
-            file_path = os.path.join(app.root_path,
-                                 endpoint, filename)
-            values['q'] = int(os.stat(file_path).st_mtime)
-    return url_for(endpoint, **values)
-
 # If GET, display normal page
 @app.route('/', methods=['GET'])
 def form(name=None):
-    return render_template('index.html', bool_answer="Bravo!")
+    return render_template('index.html')
 
-# If POST, an answer has been subbmit
+# If POST, an answer has been submit
 @app.route('/', methods=['POST'])
 def decrypt_me(name=None):
     hex_dig = None
     passwd_input = request.form['passwd_input']
     hash_input = request.form['hash_input']
 
-    # Use appropriate Hash fonction
+    # Use appropriate Hash function
     if hash_input == 'MD5':
         hash_object = hashlib.md5(str(passwd_input).encode('utf-8'))
         hex_dig = hash_object.hexdigest()
